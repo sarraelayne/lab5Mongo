@@ -16,14 +16,16 @@ $(document).ready(function(){
   $("#getComments").click(function() {
     $.getJSON('comment', function(data) {
       console.log(data);
-      var everything = "<ul>";
+      var everything = "Comments Matrix <br>";
       for(var comment in data) {
         com = data[comment];
-        everything += "<li> Name: " + com.Name + " -- Comment: " + com.Comment + "</li>";
+        everything += "Name: " + com.Name + " -- Comment: " + com.Comment + "<br>";
       }
-      everything += "</ul>";
       $("#comments").html(everything);
     })
+  })
+  $("#deleteAll").click(function() {
+    
   })
 });
 
