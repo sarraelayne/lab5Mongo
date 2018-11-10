@@ -27,10 +27,7 @@ $(document).ready(function(){
   });
   $("#deleteComments").click(function() {
     console.log("you clicked delete");
-    var delName = "";
-    var URL = "comment?q=" + delName;
-    console.log(URL);
-    $.getJSON(URL, function(data) {
+    $.getJSON('delete_all', function(data) {
       console.log(data);
       for(var comment in data) {
        delete data[comment]; 

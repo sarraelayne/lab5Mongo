@@ -30,16 +30,13 @@ router.post('/comment', function(req, res, next) {
       }
     });
 });
-router.delete('/comment', function(req, res) {
+router.post('/delete_all', function(req, res, next) {
   console.log("delete route");
-  var obj = {};
-  Comment.remove(obj, function(err, commentList) {
-    if(err) {console.log("delete error");}
-    else {
-      res.json(commentList);
-      console.log("Delete worked");
-      return res.status(200);
+  Comment.find().deleteMany(function(err, result) {
+    if(err) {
+      return console.log("delete error");
     }
+    res.json(result);
   });
 });
 
