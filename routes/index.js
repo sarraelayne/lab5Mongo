@@ -30,17 +30,36 @@ router.post('/comment', function(req, res, next) {
       }
     });
 });
+router.delete('/comment', function(req, res) {
+  console.log("delete route");
+  var obj = {};
+  Comment.remove(obj, function(err, commentList) {
+    if(err) {console.log("delete error");}
+    else {
+      res.json(commentList);
+      console.log("Delete worked");
+      return res.status(200);
+    }
+  });
+});
 
-/* GET comments from database */
+/* GET comments from database  QUERY FOR NAME IN HERE AS WELL*/
 router.get('/comment', function(req, res, next) {
     console.log("In the GET route?");
-    Comment.find(function(err,commentList) { //Calls the find() method on your database
+    console.log(req.query);
+    var searchName = req.query["q"];
+    console.log(searchName);
+    var obj = {};
+    if(searchName) {
+      obj = {Name: searchName};
+    }
+    Comment.find(obj,function(err,commentList) { //Calls the find() method on your database
       if (err) return console.error(err); //If there's an error, print it out
       else {
         console.log(commentList); //Otherwise console log the comments you found
         res.json(commentList); //Then send the comments
       }
-    })
+    });
 });
 
 
