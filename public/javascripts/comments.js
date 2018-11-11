@@ -27,12 +27,14 @@ $(document).ready(function(){
   });
   $("#deleteComments").click(function() {
     console.log("you clicked delete");
-    $.getJSON('delete_all', function(data) {
-      console.log(data);
-      for(var comment in data) {
-       delete data[comment]; 
-      }
-    })
+    $.ajax({
+        url: "comment",
+        type: "DELETE",
+        success: function(data, textStatus) {
+          alert("Delete was " + textStatus);
+          $('#comments').html("");
+        }
+    });
 
   });
   $("#searchComments").click(function(event) {

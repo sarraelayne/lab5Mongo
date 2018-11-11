@@ -30,7 +30,7 @@ router.post('/comment', function(req, res, next) {
       }
     });
 });
-router.post('/delete_all', function(req, res, next) {
+router.delete('/comment', function(req, res, next) {
   console.log("delete route");
   Comment.find().deleteMany(function(err, result) {
     if(err) {
